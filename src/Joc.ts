@@ -6,43 +6,26 @@ class Joc {
     }
 
     dibuixarTauler() {
-        const taulerHTML = document.getElementById("tauler");
-
-        if (taulerHTML) {
-            taulerHTML.innerHTML = ""; // Limpiar el contenido anterior
-
-            for (let fila = 0; fila < this.tauler.filas; fila++) {
-                const filaHTML = document.createElement("div");
-                filaHTML.classList.add("fila");
-
-                for (let columna = 0; columna < this.tauler.columnes; columna++) {
-                    const casella = this.tauler.caselles[fila][columna];
-                    const casellaHTML = document.createElement("div");
-                    casellaHTML.classList.add("casella");
-                    casellaHTML.dataset.fila = fila.toString();
-                    casellaHTML.dataset.columna = columna.toString();
-                    casellaHTML.addEventListener("click", () => this.revelarCasella(fila, columna));
-                    casellaHTML.addEventListener("contextmenu", (event) => {
-                        event.preventDefault();
-                        this.marcarCasella(fila, columna);
-                    });
-
-                    filaHTML.appendChild(casellaHTML);
-                }
-
-                taulerHTML.appendChild(filaHTML);
+        const taulerDiv = document.getElementById('tauler');
+        taulerDiv.innerHTML = ''; // Limpiar el tablero
+        for (let i = 0; i < this.tauler.filas; i++) {
+            const filaDiv = document.createElement('div');
+            filaDiv.className = 'fila';
+            for (let j = 0; j < this.tauler.columnes; j++) {
+                const casellaDiv = document.createElement('div');
+                casellaDiv.className = 'casella';
+                casellaDiv.textContent = this.tauler.caselles[i][j].toString();
+                casellaDiv.addEventListener('click', () => this.revelarCasella(i, j));
+                filaDiv.appendChild(casellaDiv);
             }
+            taulerDiv.appendChild(filaDiv);
         }
     }
 
     revelarCasella(fila: number, columna: number) {
         const casella = this.tauler.caselles[fila][columna];
-        if (casella.esMina) {
-            // Si es una mina, terminar el juego
-            console.log("¡Has perdido!");
-        } else {
-            // Implementar lógica para revelar casilla y mostrar cantidad de minas cercanas
-        }
+        casella.mostrarCasella(); // Revelar la casilla
+        this.dibuixarTauler(); // Volver a dibujar el tablero
     }
 
     marcarCasella(fila: number, columna: number) {

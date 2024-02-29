@@ -24,4 +24,13 @@ class Casella {
         let contador = 0;
         return contador;
     }
+    toString(): string {
+        if (!this.revelada) {
+            return 'O';
+        } else if (this.esMina) {
+            return 'M';
+        } else {
+            return 'R';
+        }
+    }
 }
