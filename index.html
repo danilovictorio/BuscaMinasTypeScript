@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuscaMinas</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscaminas</title>
+  <style>
+    .fila {
+      display: flex;
+    }
+    .casella {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="board">
-        <div class="cell hidden"></div>
-        <div class="cell shown">1</div>
-        <div class="cell mine">*</div>
-    </div>
-</body>
+    <div id="tauler"></div>
+    <script src="./dis/Casella.js"></script>
+    <script src="./dis/Tauler.js"></script>
+    <script src="./dis/Joc.js"></script>
+    <script>
+      var joc = new Joc(5, 5);
+      joc.dibuixarTauler();
+    </script>
+  </body>
 </html>
